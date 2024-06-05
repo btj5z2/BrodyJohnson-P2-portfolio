@@ -2,6 +2,22 @@
 title: "About me"
 ---
 
-Add some text and a figure describing myself.
+![Trip to Colorado in February, 2024](Snowboard.jpg){fig-align="center" width="293"}
 
-For details, see the exercise instructions. 
+## School & Work
+
+I graduated in 2018 from Missouri S&T with a Bachelor of Science in Mechanical Engineering. Before moving to San Antonio, I completed two internships in Saint Louis, MO and a co-op with Ford Motor Company in Kansas City, MO. In San Antonio, I work at Southwest Research Institute (SwRI) evaluating fuels, engine oils, and driveline lubricants in automobiles with the use of SwRI's Mileage Accumulation Dynamometer (MAD) facility. I also manage tests evaluating fuels for their performance such as the ASTM D6201 Standard Test Method for Dynamometer Evaluation of Unleaded Spark-Ignition Engine Fuel for Intake Valve Deposit (IVD) Formation and the Intake Valve Sticking (IVS) test developed by SwRI.
+
+## Data Analysis Experience & Interested Research Areas
+
+Before starting this program in Data Analytics, my experience was limited to a couple of statistics course in high school and college. At work, I work with a lot of time-series operational data from running tests but the extent of data analysis primarily consists of creating visualizations. With this being said, one area of research of interest is the automotive industry. Outside of testing cars during the day, I love diving into data related to sports so most anything sports related would be another interesting research area.
+
+#### Interesting Video Related to Data
+
+Below is link to an interesting Ted Talk on "The Future of Data." In this video, Tiago Santos touches on countless examples data has been used for in the past and contrasts them to examples of how data is being used in the present whether it be in business, pharmaceuticals, and sports.He goes on to explain how moving forward, data is ever changing with respect to its volume, value, variety, velocity, and veracity. Tiago concludes about the importance of having responsible people at the center of businesses and governments who are able to take in relevant data to make impactful decisions.
+
+[The Future of Data \| Tiago Santos \| TEDxEUBusinessSchoolBarcelona](https://www.youtube.com/watch?v=H598lrc7SIw "The Future of Data | Tiago Santos | TEDxEUBusinessSchoolBarcelona")
+
+## Fun Facts
+
+I love playing sports. The primary sports I've consistently participated in would be Ultimate Frisbee and endurance races. For the last \~10 years, I would travel the United States to compete in Ultimate Frisbee tournaments. As for endurance races, I've enjoyed running half marathons for several years but my primary achievements would consist of completing a full marathon in 2018 and then a half Ironman in 2023. I am taking a hiatus from the activities as I pursue my Masters but try to make time for golf, snowboarding trips, mountain biking, sand volleyball, etc.
