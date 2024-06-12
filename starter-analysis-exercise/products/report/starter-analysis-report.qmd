@@ -27,7 +27,7 @@ library(knitr)
 
 
 # Summary/Abstract
-The goal of my project will be to find variables related to injuries observed in the NFL. That is, find the common play types, game situation (time remaining, down, yards to go, etc.), and injured player metrics (position, height, body weight, etc.) that has a correlation to causing the resulting injury.  
+_Write a summary of your project._
 
 
 {{< pagebreak >}}
@@ -36,14 +36,14 @@ The goal of my project will be to find variables related to injuries observed in
 # Introduction 
 
 ## General Background Information
-For years, the NFL has been making changes in the game in an attempt to prevent player injuries. These changes range from rule modifications to investment in advancements to the players pads and helmets. Hopefully, the findings from this project can help inform players, coaches, and who knows, the NFL about the metrics for a higher risk in injury. 
+_Provide enough background on your topic that others can understand the why and how of your analysis_ 
 
 ## Description of data and data source
-Three data sets have been identified for this project. The primary data set ("Injury Player Data" obtained from a Github repository contain 1,586 obervations) consists of every play ran in the NFL containing an injury during the 2019-2020 season. Some of the things contained in this data include the teams playing, the week in the season, play description, injury area, and injured player metrics. Two other data sets were obtained from Kaggle to compare to the injury data set. The first is a "cumulative play data" containing information about every play ran in the 2019-2020 NFL season (42,186 observations). Information such as the teams playing, play description, and time in the game when it was ran. The other supporting data set is the "player demographic data" containing information about all NFL players in the 2015-2019 seasons (11,145 observations). Similar to the primary data set, this will have players height, weight, date of birth, etc. 
+_Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section._
+I added 2 columns to the 'exampledata' data set creating 'exampledata2.' The first column I added is a numeric variable called 'WkMiles' which is the average number of miles that person drives on any given week. The second variable I added is called 'VehColor' which is the color of the primary vehicle that person drives. Possible values for 'VehColor' consist of black, brown, white, silver, and other. 
 
 ## Questions/Hypotheses to be addressed
 _State the research questions you plan to answer with this analysis._
-My hope is to find statistically different metrics between players and the plays containing an injury and the general population of players/plays in the NFL. 
 
 To cite other work (important everywhere, but likely happens first in introduction), make sure your references are in the bibtex file specified in the YAML header above (here `dataanalysis_template_references.bib`) and have the right bibtex key. Then you can include like this:
 
@@ -56,7 +56,6 @@ Examples of reproducible research projects can for instance be found in [@mckay2
 
 _Describe your methods. That should describe the data, the cleaning processes, and the analysis approaches. You might want to provide a shorter description here and all the details in the supplement._
 
-In both the "Injury Player Data" set and "cumulative play data" set, the play descriptions will need to be boiled down to simplified play types (pass, run, fumble, etc.). Next, a lot of what looks like unnecessary plays are included in the "cumulative play data" set such as end of quarters and games so these obervations can be filtered out. Lastly, empty columns were noticed in the "cumulative play data" that can be removed. 
 
 ## Data aquisition
 _As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
@@ -64,27 +63,6 @@ _As applicable, explain where and how you got the data. If you directly import t
 
 ## Data import and cleaning
 _Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g. as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along._
-
-
-
-```{r}
-#Loading the Data Sets
-install.packages("RCurl")
-library(RCurl)
-setwd("C:/Users/Brody Johnson/Desktop/PracticumII-course/BrodyJohnson-P2-portfolio")
-
-# Injury Player Data
-#injuries <- read.csv(text = getURL("https://raw.githubusercontent.com/btj5z2/BrodyJohnson-P2-portfolio/main/position_injury_player_2019_2020_update.csv"))
-injuries = read.csv("~/position_injury_player_2019_2020_update.csv")
-
-# Cumulative Play data
-#pbp <- read.csv(text = getURL("https://raw.githubusercontent.com/btj5z2/BrodyJohnson-P2-portfolio/main/pbp-2019.csv")) #short for play-by-play
-
-#Player Demographic data
-#players <- read.csv(text = getURL("https://raw.githubusercontent.com/btj5z2/BrodyJohnson-P2-portfolio/main/player_position_Rmd1.csv"))
-
-```
-
 
 
 ## Statistical analysis
@@ -99,11 +77,6 @@ _Explain anything related to your statistical analyses._
 ## Exploratory/Descriptive analysis
 
 _Use a combination of text/tables/figures to explore and describe your data. Show the most important descriptive results here. Additional ones should go in the supplement. Even more can be in the R and Quarto files that are part of your project._
-```{r}
-plot(injuries$injury.area, count(injuries$injury.area))
-
-pairs(~)
-```
 
 
 @tbl-summarytable shows a summary of the data.

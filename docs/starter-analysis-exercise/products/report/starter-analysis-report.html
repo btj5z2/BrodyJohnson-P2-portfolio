@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
-<meta name="dcterms.date" content="2024-06-03">
+<meta name="author" content="Brody Johnson">
+<meta name="dcterms.date" content="2024-06-07">
 
-<title>YOURNAME Data Analysis Portfolio - Manuscript/Report Template for a Data Analysis Project</title>
+<title>Brody Johnson’s Data Analysis Portfolio - Parameters associated with Injuries in the NFL</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -56,10 +90,10 @@ div.csl-indent {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,7 +127,7 @@ div.csl-indent {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">YOURNAME Data Analysis Portfolio</span>
+    <span class="navbar-title">Brody Johnson’s Data Analysis Portfolio</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -132,7 +166,7 @@ div.csl-indent {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="../../../URL-TO-THIS-REPOSITORY-HERE" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/btj5z2/BrodyJohnson-P2-portfolio" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -153,7 +187,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Manuscript/Report Template for a Data Analysis Project</h1>
+<h1 class="title">Parameters associated with Injuries in the NFL</h1>
 </div>
 
 
@@ -163,14 +197,14 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>Brody Johnson </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 3, 2024</p>
+      <p class="date">June 7, 2024</p>
     </div>
   </div>
   
@@ -184,22 +218,22 @@ div.csl-indent {
 <p>This uses MS Word as output format. <a href="https://quarto.org/docs/output-formats/ms-word.html">See here</a> for more information. You can switch to other formats, like html or pdf. See <a href="https://quarto.org/">the Quarto documentation</a> for other formats.</p>
 <section id="summaryabstract" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Summary/Abstract</h1>
-<p><em>Write a summary of your project.</em></p>
+<p>The goal of this project will be to find variables related to injuries observed in the NFL. That is, find the common play types, game situation (time remaining, down, yards to go, etc.), and injured player metrics (position, height, body weight, etc.) that has a correlation to causing the resulting injury.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="introduction" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Introduction</h1>
 <section id="general-background-information" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="general-background-information"><span class="header-section-number">2.1</span> General Background Information</h2>
-<p><em>Provide enough background on your topic that others can understand the why and how of your analysis</em></p>
+<p>For years, the NFL has been making changes in the game in an attempt to prevent player injuries. These changes range from rule modifications to investment in advancements to the players pads and helmets. Hopefully, the findings from this project can help inform players, coaches, and who knows, the NFL about the metrics for a higher risk in injury.</p>
 </section>
 <section id="description-of-data-and-data-source" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="description-of-data-and-data-source"><span class="header-section-number">2.2</span> Description of data and data source</h2>
-<p><em>Describe what the data is, what it contains, where it is from, etc. Eventually this might be part of a methods section.</em></p>
+<p>Three data sets have been identified for this project. The primary data set (“Injury Player Data” obtained from a Github repository contain 1,586 obervations) consists of every play ran in the NFL containing an injury during the 2019-2020 season. Some of the things contained in this data include the teams playing, the week in the season, play description, injury area, and injured player metrics. Two other data sets were obtained from Kaggle. The first is a “cumulative play data” containing information about every play ran in the 2019-2020 NFL season (42,186 observations). Information such as the teams playing, play description, and time in the game when it was ran. The last data set is the “player demographic data” containing information about all NFL players in the 2015-2019 seasons (11,145 observations). This data set has player metrics such as height, weight, date of birth, etc.</p>
 </section>
 <section id="questionshypotheses-to-be-addressed" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="questionshypotheses-to-be-addressed"><span class="header-section-number">2.3</span> Questions/Hypotheses to be addressed</h2>
-<p><em>State the research questions you plan to answer with this analysis.</em></p>
+<p><em>State the research questions you plan to answer with this analysis.</em> My hope is to answer the following question: What metrics, if any, are available that can help predict whether an injury may occur? In turn, this has the potential to answer more questions. For example: 1. For coaches, are there specific play types that lead to more injuries? 2. For players, is there a goal weight for certain positions that can reduce the liklihood of injury?</p>
 <p>To cite other work (important everywhere, but likely happens first in introduction), make sure your references are in the bibtex file specified in the YAML header above (here <code>dataanalysis_template_references.bib</code>) and have the right bibtex key. Then you can include like this:</p>
 <p>Examples of reproducible research projects can for instance be found in <span class="citation" data-cites="mckay2020 mckay2020a">(<a href="#ref-mckay2020" role="doc-biblioref">McKay, Ebell, Billings, et al., 2020</a>; <a href="#ref-mckay2020a" role="doc-biblioref">McKay, Ebell, Dale, Shen, &amp; Handel, 2020</a>)</span></p>
 <div style="page-break-after: always;"></div>
@@ -208,6 +242,7 @@ div.csl-indent {
 <section id="methods" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Methods</h1>
 <p><em>Describe your methods. That should describe the data, the cleaning processes, and the analysis approaches. You might want to provide a shorter description here and all the details in the supplement.</em></p>
+<p>In both the “Injury Player Data” set and “cumulative play data” set, the play descriptions will need to be boiled down to simplified play types (pass, run, fumble, etc.). Next, a lot of what looks like unnecessary plays are included in the “cumulative play data” set such as end of quarters and games so these observations can be filtered out. Lastly, empty columns were noticed in the “cumulative play data” that can be removed.</p>
 <section id="data-aquisition" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="data-aquisition"><span class="header-section-number">3.1</span> Data aquisition</h2>
 <p><em>As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next.</em></p>
@@ -215,10 +250,28 @@ div.csl-indent {
 <section id="data-import-and-cleaning" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="data-import-and-cleaning"><span class="header-section-number">3.2</span> Data import and cleaning</h2>
 <p><em>Write code that reads in the file and cleans it so it’s ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what kind of cleaning/processing you do, and provide more details and well documented code somewhere (e.g.&nbsp;as supplement in a paper). All materials, including files that contain code, should be commented well so everyone can follow along.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Loading the Data Sets</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("RCurl")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#library(RCurl)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Brody Johnson/Desktop/PracticumII-course/BrodyJohnson-P2-portfolio"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Injury Player Data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#injuries &lt;- read.csv(text = getURL("https://raw.githubusercontent.com/btj5z2/BrodyJohnson-P2-portfolio/main/position_injury_player_2019_2020_update.csv")) #also works but not needed</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>injuries <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"position_injury_player_2019_2020_update.csv"</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative Play data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#pbp &lt;- read.csv(text = getURL("https://raw.githubusercontent.com/btj5z2/BrodyJohnson-P2-portfolio/main/pbp-2019.csv")) #short for play-by-play #also works but not needed</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>pbp <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"pbp-2019.csv"</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Player Demographic data</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#players &lt;- read.csv(text = getURL("https://raw.githubusercontent.com/btj5z2/BrodyJohnson-P2-portfolio/main/player_position_Rmd1.csv"))</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>players <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"players (1).csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="statistical-analysis" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="statistical-analysis"><span class="header-section-number">3.3</span> Statistical analysis</h2>
-<p><em>Explain anything related to your statistical analyses.</em></p>
+<p><em>Explain anything related to your statistical analyses.</em> The big picture look at the analysis will be to compare the frequency of parameters in the injury data set to the same parameters in the two supporting data sets. For example, we may find in the injury data set that most injuries occur during “short pass” plays. However, if we were to find the “short pass” play is the most common play type ran in the NFL, this becomes less significant of a finding.</p>
 <div style="page-break-after: always;"></div>
 </section>
 </section>
@@ -227,6 +280,180 @@ div.csl-indent {
 <section id="exploratorydescriptive-analysis" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="exploratorydescriptive-analysis"><span class="header-section-number">4.1</span> Exploratory/Descriptive analysis</h2>
 <p><em>Use a combination of text/tables/figures to explore and describe your data. Show the most important descriptive results here. Additional ones should go in the supplement. Even more can be in the R and Quarto files that are part of your project.</em></p>
+<section id="structures-of-each-data-set" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="structures-of-each-data-set"><span class="header-section-number">4.1.1</span> Structures of each data set</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Structure of Injury Data Set</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(injuries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1586 obs. of  48 variables:
+ $ player_id                : chr  "2019_ARI_1_Murray" "2019_ARI_13_Kirk" "2019_ARI_21_Peterson" "2019_ARI_21_Peterson" ...
+ $ game_id                  : chr  "2019_16_ARI_SEA" "2019_04_SEA_ARI" "2019_10_ARI_TB" "2019_10_ARI_TB" ...
+ $ home_team                : chr  "SEA" "ARI" "TB" "TB" ...
+ $ away_team                : chr  "ARI" "SEA" "ARI" "ARI" ...
+ $ season_type              : chr  "REG" "REG" "REG" "REG" ...
+ $ week.x                   : int  16 4 10 10 8 13 16 16 7 17 ...
+ $ posteam                  : chr  "ARI" "ARI" "TB" "TB" ...
+ $ posteam_type             : chr  "away" "home" "home" "home" ...
+ $ defteam                  : chr  "SEA" "SEA" "ARI" "ARI" ...
+ $ side_of_field            : chr  "SEA" "SEA" "TB" "TB" ...
+ $ yardline_100             : int  31 15 72 84 67 91 81 10 67 38 ...
+ $ game_date                : int  43821 43737 43779 43779 43765 43800 43821 43821 43758 43828 ...
+ $ quarter_seconds_remaining: int  735 26 453 437 269 653 890 40 155 155 ...
+ $ half_seconds_remaining   : int  1635 26 1353 437 1169 1553 890 40 155 1055 ...
+ $ game_seconds_remaining   : int  1635 26 1353 437 1169 1553 890 1840 155 1055 ...
+ $ game_half                : chr  "Half2" "Half2" "Half2" "Half2" ...
+ $ qtr                      : int  3 4 3 4 3 3 4 2 4 3 ...
+ $ down                     : int  3 2 2 1 3 3 1 1 4 3 ...
+ $ time                     : num  0.5104 0.0181 0.3146 0.3035 0.1868 ...
+ $ yrdln                    : chr  "SEA 31" "SEA 15" "TB 28" "TB 16" ...
+ $ ydstogo                  : int  12 3 7 10 2 9 10 10 15 4 ...
+ $ desc                     : chr  "(12:15) (Shotgun) 1-K.Murray scrambles left end pushed ob at SEA 27 for 4 yards (30-B.McDougald). ARI-1-K.Murra"| __truncated__ "(:26) (Shotgun) 1-K.Murray pass short right to 13-C.Kirk to SEA 9 for 6 yards (24-J.Taylor). ARI-13-C.Kirk was "| __truncated__ "(7:33) (Shotgun) 3-J.Winston pass short right to 27-R.Jones to TB 33 for 5 yards (58-J.Hicks). ARI-21-P.Peterso"| __truncated__ "(7:17) (Shotgun) 3-J.Winston pass incomplete deep middle to 13-M.Evans [98-C.Peters]. ARI-21-P.Peterson was inj"| __truncated__ ...
+ $ injured_first_name       : chr  "K" "C" "P" "P" ...
+ $ injured_last_name        : chr  "Murray" "Kirk" "Peterson" "Peterson" ...
+ $ injured_team             : chr  "ARI" "ARI" "ARI" "ARI" ...
+ $ injured_player_num       : int  1 13 21 21 29 34 41 41 43 54 ...
+ $ Contact..non.contact     : chr  "non contact" "contact" "non contact" "non contact" ...
+ $ injury.area              : chr  "lower body" "knee" "lower body" "lower body" ...
+ $ player.role              : chr  "ball carrier" "pass catcher" "AFP" "pas defender" ...
+ $ season.x                 : int  2019 2019 2019 2019 2019 2019 2019 2019 2019 2019 ...
+ $ season.y                 : int  2019 2019 2019 2019 2019 2019 2019 2019 2019 2019 ...
+ $ team                     : chr  "ARI" "ARI" "ARI" "ARI" ...
+ $ position                 : chr  "QB" "WR" "DB" "DB" ...
+ $ depth_chart_position     : chr  "QB" "WR" "CB" "CB" ...
+ $ jersey_number            : int  1 13 21 21 29 34 41 41 43 54 ...
+ $ status                   : chr  "Active" "Active" "Active" "Active" ...
+ $ full_name                : chr  "Kyler Murray" "Christian Kirk" "Patrick Peterson" "Patrick Peterson" ...
+ $ first_name               : chr  "Kyler" "Christian" "Patrick" "Patrick" ...
+ $ last_name                : chr  "Murray" "Kirk" "Peterson" "Peterson" ...
+ $ birth_date               : chr  "8/7/1997" "11/18/1996" "7/11/1990" "7/11/1990" ...
+ $ height                   : int  70 71 73 73 69 71 73 73 73 76 ...
+ $ weight                   : int  207 200 203 203 210 190 211 211 235 245 ...
+ $ college                  : chr  "Oklahoma" "Texas A&amp;amp;M" "Louisiana State" "Louisiana State" ...
+ $ years_exp                : int  0 1 8 8 1 0 3 3 2 5 ...
+ $ game_type                : chr  "REG" "REG" "REG" "REG" ...
+ $ football_name            : chr  "Kyler" "Christian" "Patrick" "Patrick" ...
+ $ smart_id                 : chr  "32004d55-5267-0413-8d36-a5c3fd781aa0" "32004b49-5225-7918-e402-81feed3bdafb" "32005045-5441-5511-6ae6-059d8eb99a8d" "32005045-5441-5511-6ae6-059d8eb99a8d" ...
+ $ entry_year               : int  2019 2018 2011 2011 2018 2019 2016 2016 2017 2014 ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Structure of Play-by-Play Data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pbp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   42186 obs. of  45 variables:
+ $ GameId                        : int  2019122201 2019122201 2019122201 2019122201 2019122201 2019122201 2019122201 2019122201 2019122201 2019122201 ...
+ $ GameDate                      : chr  "2019-12-22" "2019-12-22" "2019-12-22" "2019-12-22" ...
+ $ Quarter                       : int  4 4 4 4 4 4 4 4 4 3 ...
+ $ Minute                        : int  1 1 1 1 2 2 2 2 2 1 ...
+ $ Second                        : int  40 47 51 57 3 15 20 25 43 4 ...
+ $ OffenseTeam                   : chr  "LAC" "LAC" "LAC" "LAC" ...
+ $ DefenseTeam                   : chr  "LV" "LV" "LV" "LV" ...
+ $ Down                          : int  3 2 1 2 1 3 2 1 2 0 ...
+ $ ToGo                          : int  9 9 9 2 10 6 6 10 4 0 ...
+ $ YardLine                      : int  91 91 91 86 78 68 68 64 55 85 ...
+ $ X                             : logi  NA NA NA NA NA NA ...
+ $ SeriesFirstDown               : int  0 0 0 0 0 1 0 0 1 1 ...
+ $ X.1                           : logi  NA NA NA NA NA NA ...
+ $ NextScore                     : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Description                   : chr  "(1:40) (SHOTGUN) 17-P.RIVERS PASS INCOMPLETE SHORT LEFT." "(1:47) (SHOTGUN) 17-P.RIVERS PASS INCOMPLETE SHORT LEFT TO 13-K.ALLEN (26-N.LAWSON)." "(1:51) (SHOTGUN) 17-P.RIVERS PASS INCOMPLETE SHORT RIGHT TO 81-M.WILLIAMS (22-K.NIXON)." "(1:57) (SHOTGUN) 17-P.RIVERS PASS INCOMPLETE SHORT RIGHT TO 81-M.WILLIAMS [98-M.CROSBY]. PENALTY ON OAK-91-B.MA"| __truncated__ ...
+ $ TeamWin                       : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ X.2                           : logi  NA NA NA NA NA NA ...
+ $ X.3                           : logi  NA NA NA NA NA NA ...
+ $ SeasonYear                    : int  2019 2019 2019 2019 2019 2019 2019 2019 2019 2019 ...
+ $ Yards                         : int  0 0 0 0 8 10 0 4 9 0 ...
+ $ Formation                     : chr  "SHOTGUN" "SHOTGUN" "SHOTGUN" "SHOTGUN" ...
+ $ PlayType                      : chr  "PASS" "PASS" "PASS" "PASS" ...
+ $ IsRush                        : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ IsPass                        : int  1 1 1 1 1 1 1 1 1 0 ...
+ $ IsIncomplete                  : int  1 1 1 1 0 0 1 0 0 0 ...
+ $ IsTouchdown                   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ PassType                      : chr  "SHORT LEFT" "SHORT LEFT" "SHORT RIGHT" "SHORT RIGHT" ...
+ $ IsSack                        : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ IsChallenge                   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ IsChallengeReversed           : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Challenger                    : logi  NA NA NA NA NA NA ...
+ $ IsMeasurement                 : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ IsInterception                : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ IsFumble                      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ IsPenalty                     : int  0 0 0 1 0 0 0 0 0 0 ...
+ $ IsTwoPointConversion          : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ IsTwoPointConversionSuccessful: int  0 0 0 0 0 0 0 0 0 0 ...
+ $ RushDirection                 : chr  "" "" "" "" ...
+ $ YardLineFixed                 : int  9 9 9 14 22 32 32 36 45 15 ...
+ $ YardLineDirection             : chr  "OPP" "OPP" "OPP" "OPP" ...
+ $ IsPenaltyAccepted             : int  0 0 0 1 0 0 0 0 0 0 ...
+ $ PenaltyTeam                   : chr  "" "" "" "OAK" ...
+ $ IsNoPlay                      : int  0 0 0 1 0 0 0 0 0 0 ...
+ $ PenaltyType                   : chr  "" "" "" "DEFENSIVE OFFSIDE" ...
+ $ PenaltyYards                  : int  0 0 0 5 0 0 0 0 0 0 ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Structure of All Players Data Set</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(players)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1303 obs. of  7 variables:
+ $ nflId      : int  2539334 2539653 2543850 2555162 2555255 2555543 2556445 2507763 2532842 2540158 ...
+ $ height     : chr  "72" "70" "69" "73" ...
+ $ weight     : int  190 186 186 227 232 216 211 200 243 250 ...
+ $ birthDate  : chr  "1990-09-10" "1988-11-01" "1991-12-18" "1994-11-04" ...
+ $ collegeName: chr  "Washington" "Southeastern Louisiana" "Purdue" "Louisiana State" ...
+ $ position   : chr  "CB" "CB" "SS" "MLB" ...
+ $ displayName: chr  "Desmond Trufant" "Robert Alford" "Ricardo Allen" "Deion Jones" ...</code></pre>
+</div>
+</div>
+</section>
+<section id="exploratory-analysis-of-parameters-only-in-the-injury-data-set" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="exploratory-analysis-of-parameters-only-in-the-injury-data-set"><span class="header-section-number">4.1.2</span> Exploratory Analysis of parameters only in the <em>Injury</em> Data Set</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(injuries<span class="sc">$</span>week.x, <span class="at">breaks=</span><span class="dv">24</span>,<span class="at">main=</span><span class="st">"Injuries by Week in Regular Season"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">18</span>),<span class="at">xlab=</span><span class="st">"Week"</span>,<span class="at">labels =</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="starter-analysis-report_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exploratory-analysis-of-parameters-in-the-injury-data-set-and-play-by-play-data-set" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="exploratory-analysis-of-parameters-in-the-injury-data-set-and-play-by-play-data-set"><span class="header-section-number">4.1.3</span> Exploratory Analysis of parameters in the <em>Injury</em> Data Set and <em>Play-by-play</em> Data Set</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(injuries<span class="sc">$</span>qtr, <span class="at">breaks=</span><span class="dv">6</span>,<span class="at">main=</span><span class="st">"Injuries by Quarter"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="at">xlab=</span><span class="st">"Quarter"</span>,<span class="at">labels =</span>T)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pbp<span class="sc">$</span>Quarter, <span class="at">breaks=</span><span class="dv">6</span>,<span class="at">main=</span><span class="st">"Total Plays by Quarter"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">xlab=</span><span class="st">"Quarter"</span>,<span class="at">labels =</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="starter-analysis-report_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(injuries<span class="sc">$</span>down, <span class="at">breaks=</span><span class="dv">6</span>,<span class="at">main=</span><span class="st">"Injuries by Down"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>),<span class="at">xlab=</span><span class="st">"Quarter"</span>,<span class="at">labels =</span>T)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pbp<span class="sc">$</span>Down, <span class="at">breaks=</span><span class="dv">6</span>,<span class="at">main=</span><span class="st">"Total Plays by Down"</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">xlab=</span><span class="st">"Quarter"</span>,<span class="at">labels =</span>T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="starter-analysis-report_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="exploratory-analysis-of-parameters-in-the-injury-data-set-and-cumulative-player-data-set" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="exploratory-analysis-of-parameters-in-the-injury-data-set-and-cumulative-player-data-set"><span class="header-section-number">4.1.4</span> Exploratory Analysis of parameters in the <em>Injury</em> Data Set and <em>Cumulative Player</em> Data Set</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(injuries<span class="sc">$</span>height, <span class="at">breaks=</span><span class="dv">10</span>,<span class="at">main=</span><span class="st">"Injuries by Height"</span>, <span class="at">xlab=</span><span class="st">"Heiht"</span>,<span class="at">labels =</span>T)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">as.numeric</span>(players<span class="sc">$</span>height), <span class="at">breaks=</span><span class="dv">10</span>,<span class="at">main=</span><span class="st">"Total Players Height"</span>, <span class="at">xlab=</span><span class="st">"Height"</span>,<span class="at">labels =</span>T) <span class="co">#Nedd to look into why not all numeric</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in hist(as.numeric(players$height), breaks = 10, main = "Total Players
+Height", : NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="starter-analysis-report_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(injuries<span class="sc">$</span>weight, <span class="at">breaks=</span><span class="dv">10</span>,<span class="at">main=</span><span class="st">"Injuries by Weight"</span>, <span class="at">xlab=</span><span class="st">"Weight"</span>,<span class="at">labels =</span>T)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(players<span class="sc">$</span>weight, <span class="at">breaks=</span><span class="dv">10</span>,<span class="at">main=</span><span class="st">"Total Players Weight"</span>, <span class="at">xlab=</span><span class="st">"Weight"</span>,<span class="at">labels =</span>T) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="starter-analysis-report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p><a href="#tbl-summarytable">Table&nbsp;1</a> shows a summary of the data.</p>
 <p>Note the loading of the data providing a <strong>relative</strong> path using the <code>../../</code> notation. (Two dots means a folder up). You never want to specify an <strong>absolute</strong> path like <code>C:\ahandel\myproject\results\</code> because if you share this with someone, it won’t work for them since they don’t have that path. You can also use the <code>here</code> R package to create paths. See examples of that below. <strong>I recommend the <code>here</code> package, but I’m showing the other approach here just in case you encounter it.</strong></p>
 <div class="cell">
@@ -327,6 +554,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="basic-statistical-analysis" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="basic-statistical-analysis"><span class="header-section-number">4.2</span> Basic statistical analysis</h2>
