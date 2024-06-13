@@ -40,7 +40,7 @@ Load the data.
 
 ```{r}
 #Path to data. Note the use of the here() package and not absolute paths
-data_location <- here::here("starter-analysis-exercise","data","processed-data","processeddata.rds")
+data_location <- here::here("starter-analysis-exercise","data","processed-data","processeddata2.rds")
 #load data
 mydata <- readRDS(data_location)
 ```
@@ -111,4 +111,45 @@ ggsave(filename = figure_file, plot=p4)
 
 For your own explorations, tables and figures can be "quick and dirty". As long as you can see what's going on, there is no need to polish them. That's in contrast to figures you'll produce for your final products (paper, report, presentation, website, etc.). Those should look as nice, polished and easy to understand as possible.
 
+
+```{r Boxplot Assigment #2}
+
+#ColorHeight = boxplot(mydata$Height~mydata$VehColor,
+        #main = "Primary Vehicle Color by Height",
+        #xlab = "Vehicle Color",
+        #ylab = "Height")
+
+ColorHeight = ggplot(mydata, aes(x = VehColor, y = Height)) +
+  geom_boxplot() +
+  labs(
+    title = "Primary Vehicle Color by Height",
+    x = "Vehicle Color",
+    y = "Height")
+
+plot(ColorHeight)
+
+figure_file = here("starter-analysis-exercise", "results", "figures", "Vehicle-Color-Height.png")
+ggsave(filename = figure_file, plot = ColorHeight)
+```
+
+```{r Scatterplot Assigment #2}
+
+#plot(mydata$WkMiles~mydata$Weight,
+     #main = "Weight by Average Weekly Miles",
+     #xlab = "Weight",
+     #ylab = "Average Weekly Miles")
+
+WeightMiles = ggplot(mydata, aes(x = Weight, y = WkMiles)) +
+  geom_point() +
+  labs(
+    title = "Weight by Average Weekly Miles",
+    x = "Weight",
+    y = "Average Weekly Miles")
+
+plot(WeightMiles)
+
+figure_file = here("starter-analysis-exercise", "results", "figures", "Weight-Miles.png")
+ggsave(filename = figure_file, plot = WeightMiles)
+
+```
 
