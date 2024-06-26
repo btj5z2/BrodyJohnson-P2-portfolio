@@ -2,8 +2,6 @@
 title: "R Coding Exercise"
 ---
 
-Placeholder file for the future R coding exercise.
-
 #Loading and checking data
 
 Installing libraries
@@ -67,7 +65,7 @@ Plotting population vs life expectancy
 
 ```{r}
 ggplot(poplife, mapping = aes(x = log(population), y = life_expectancy)) +
-  geom_point()
+  geom_point() 
 ```
 
 I suspect the streaks of data points we are seeing in each plot above are of the same countries over time (years).
@@ -77,8 +75,7 @@ I suspect the streaks of data points we are seeing in each plot above are of the
 Below, we are figuring out how many NA values there are for each year in the africa data set.
 
 ```{r}
-africadata_grouped = group_by(africadata, year) #grouping the data set by year
-summarise(africadata_grouped, numnas = sum(is.na(infant_mortality))) #summing the NA values for each year 
+africadata %>% group_by(year) %>% summarise(sum(is.na(infant_mortality))) #grouping the data set by year then summing the NA values for each year
 ```
 
 ```{r}

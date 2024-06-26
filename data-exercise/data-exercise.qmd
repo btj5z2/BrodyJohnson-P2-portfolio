@@ -1,0 +1,61 @@
+---
+title: "Data Exercise"
+---
+
+```{r}
+#Install and load required packages
+library(pdftools)
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(here)
+library(textdata)
+```
+
+
+```{r}
+#Reading text from pdf 
+ptext = pdf_text("../data-exercise/Automotive_news_June_2024.pdf")
+#cat(ptext) #prints all text 
+#cat(ptext[1]) #prints first page
+```
+
+```{r}
+#general info about the pdf
+info = pdf_info("../data-exercise/Automotive_news_June_2024.pdf")
+print(info) 
+```
+
+```{r}
+#Storing extracted text
+pdflist = unlist(str_extract_all(ptext, "\\S+")) #unlist removes the lists within the list. Before, each list would represent a different page.  
+head(pdflist)
+```
+
+One interesting finding from below is that after all of the "fluff" words, the words "Nissan" and "EV" were among the top 50 most frequented words in this article.
+
+```{r}
+word_freq = as.data.frame(table(pdflist))
+word_freq %>% arrange(desc(Freq)) %>% slice_head(n=50) %>% slice_tail(n=30) # a way to select the middle rows (i.e. first select top 50, then select the bottom 30 of those effectively looking at rows 31-50 of the whole data frame)
+
+
+```
+
+Ran the sentiment analysis a handful of times and got scores in the 30's and 40's so overall, generally positive article. 
+
+```{r}
+#Sentiment Analysis 
+bing = tidytext::get_sentiments("bing")
+pdflist_sample = sample(pdflist,5000)
+
+bing_sent_score =sapply(pdflist_sample, function(t) {
+  ifelse(t %in% bing$word[bing$sentiment=="positive"], 1, ifelse(t %in% bing$word[bing$sentiment=="negative"], -1, 0))
+})
+head(bing_sent_score, n=10) 
+
+bing_total_sent = sum(bing_sent_score)
+print(bing_total_sent)
+
+
+```
+
