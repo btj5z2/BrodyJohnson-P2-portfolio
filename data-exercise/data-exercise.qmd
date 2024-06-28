@@ -2,6 +2,9 @@
 title: "Data Exercise"
 ---
 
+#Loading and checking data
+
+Installing libraries
 ```{r}
 #Install and load required packages
 library(pdftools)
