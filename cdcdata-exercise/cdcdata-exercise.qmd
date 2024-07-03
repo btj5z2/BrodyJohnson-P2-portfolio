@@ -1,0 +1,77 @@
+---
+title: "cdcdata-exercise"
+author: "Brody Johnson"
+editor: visual
+---
+
+
+The data set selected for this exercise consists of the counts of deaths occurred by state and cause of death in the years of 2020 to 2023. The causes of death consist of diabetes, Alzheimer's, various respiratory diseases, and more. The data set was downloaded from the CDC website linked below. 
+
+https://data.cdc.gov/NCHS/Weekly-Provisional-Counts-of-Deaths-by-State-and-S/muzy-jte6/about_data
+
+Below, I am loading the libraries needed for this exercise and setting the seed so it is easy to reproduce results. 
+```{r}
+set.seed(200)
+library(dplyr)
+library(ggplot2)
+```
+
+Reading the data set (csv file) into R. The raw data set is starting with 35 columns and 10,476 rows of data.
+```{r}
+US_deaths = read.csv("Weekly_Provisional_Counts_of_Deaths_by_State_and_Select_Causes__2020-2023_20240702.csv", header=TRUE)
+dplyr::glimpse(US_deaths)
+```
+
+
+After taking a glimpse at the data, it is noticed the last several columns are variables acting as "flags" that would not offer much in terms of data analysis so first these are removed. 
+
+```{r}
+US_deaths = US_deaths[,1:20]
+summary(US_deaths)
+```
+
+For the sake of looking at a categorical variable, we can look at the distribution of natural cause deaths by state. The bar plot is quite busy with all of the states so this was narrowed down to the top 10. 
+```{r}
+result = US_deaths %>% 
+  group_by(State = as.factor(Jurisdiction.of.Occurrence)) %>% 
+  summarize(Total = sum(Natural.Cause)) %>% 
+  arrange(desc(Total)) %>% 
+  filter(State != "United States") %>% 
+  top_n(10, wt = Total)
+
+ggplot(result, aes(x=State, y=Total))+
+    geom_bar(stat = "identity", fill = "skyblue")
+```
+
+
+For the purpose of this exercise, I'm going to focus on the state of Texas. For one, it reduces the scope that will be analyzed but second, it also drastically reduced the missing values to only the COVID-19 related parameters. 
+```{r}
+TX_deaths = US_deaths %>%  filter(Jurisdiction.of.Occurrence == "Texas")
+summary(TX_deaths)
+```
+
+Below are three plots, each depicting the number of deaths caused by natural causes, Alzheimer disease, and chronic lower respiratory diseases respectively. 
+
+In the natural cause plot, we see definitive spikes in deaths in mid-2020, late 2020, Fall of 2021, and early 2022. This is interesting because it does not seem like there is a particular time of year these spikes are ocurring and then the spikes are almost nonexistent in 2023.
+
+```{r}
+ggplot(TX_deaths, aes(x = Week.Ending.Date, y = Natural.Cause))+
+  geom_bar(stat= "identity")
+```
+
+The Alzheimer disease plot below is more stable than the natural cause plot above. It appears the deaths started to drop off in the Spring of 2021 with a couple of spikes in 2022 and 2023.
+
+```{r}
+ggplot(TX_deaths, aes(x = Week.Ending.Date, y = Alzheimer.disease..G30.))+
+  geom_bar(stat= "identity")
+```
+
+Deaths due to respiratory disease (below) is something more of what I would expect in a time series data set with increases and decreases with the seasons.  
+
+```{r}
+ggplot(TX_deaths, aes(x = Week.Ending.Date, y = Chronic.lower.respiratory.diseases..J40.J47.))+
+  geom_bar(stat= "identity")
+```
+
+
+
