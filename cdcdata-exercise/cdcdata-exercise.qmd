@@ -78,13 +78,13 @@ This Section Contributed by Vinayak Revisanker
 
 ```{r}
 
-# Display summary of the synthetic data
-summary(synthetic_data)
-
-# Plotting the synthetic number of deaths by Diabetes in Texas
-ggplot(synthetic_data, aes(x = as.Date(Week.Ending.Date), y = Diabetes.mellitus..E10.E14.)) +
-  geom_line() +
-  labs(title = "Synthetic Diabetic Deaths in Texas", x = "Week Ending Date", y = "Number of Deaths")
+# # Display summary of the synthetic data
+# summary(synthetic_data)
+# 
+# # Plotting the synthetic number of deaths by Diabetes in Texas
+# ggplot(synthetic_data, aes(x = as.Date(Week.Ending.Date), y = Diabetes.mellitus..E10.E14.)) +
+#   geom_line() +
+#   labs(title = "Synthetic Diabetic Deaths in Texas", x = "Week Ending Date", y = "Number of Deaths")
 
 
 
@@ -95,22 +95,22 @@ ggplot(synthetic_data, aes(x = as.Date(Week.Ending.Date), y = Diabetes.mellitus.
 
 ```{r}
 
-# Display summary of the synthetic data
-summary(synthetic_data)
-
-# Plotting the synthetic number of deaths by Influenza and pneumonia disease in Texas
-ggplot(synthetic_data, aes(x = as.Date(Week.Ending.Date), y = Influenza.and.pneumonia..J09.J18.)) +
-  geom_line() +
-  labs(title = "Influenza and pneumonia Disease Deaths in Texas", x = "Week Ending Date", y = "Number of Deaths")
+# # Display summary of the synthetic data
+# summary(synthetic_data)
+# 
+# # Plotting the synthetic number of deaths by Influenza and pneumonia disease in Texas
+# ggplot(synthetic_data, aes(x = as.Date(Week.Ending.Date), y = Influenza.and.pneumonia..J09.J18.)) +
+#   geom_line() +
+#   labs(title = "Influenza and pneumonia Disease Deaths in Texas", x = "Week Ending Date", y = "Number of Deaths")
 ```
 
 ```{r}
 
-# Display summary of the synthetic data
-summary(synthetic_data)
-
-# Plotting the synthetic number of deaths by Septicemia diseases in Texas
-ggplot(synthetic_data, aes(x = as.Date(Week.Ending.Date), y = Septicemia..A40.A41.)) +
-  geom_line() +
-  labs(title = "Septicemia Disease Deaths in Texas", x = "Week Ending Date", y = "Number of Deaths")
+# # Display summary of the synthetic data
+# summary(synthetic_data)
+# 
+# # Plotting the synthetic number of deaths by Septicemia diseases in Texas
+# ggplot(synthetic_data, aes(x = as.Date(Week.Ending.Date), y = Septicemia..A40.A41.)) +
+#   geom_line() +
+#   labs(title = "Septicemia Disease Deaths in Texas", x = "Week Ending Date", y = "Number of Deaths")
 ```

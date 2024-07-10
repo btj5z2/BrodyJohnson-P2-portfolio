@@ -2,4 +2,100 @@
 title: "Presentation Exercise"
 ---
 
-Placeholder file for the future data/results presentation exercise.
+In this exercise, I recreated a graph and table in a FiveThiryEight article linked below. The data depicts the contributions made to each political party by different sports owners and commissioners. All in all, a majority of contributions are made to the Republican party. The one exception would be the WNBA where they use to not contribute as much to Republicans but each year showed an increase until more were being contributed to Republicans than Democrats.
+
+https://fivethirtyeight.com/features/inside-the-political-donation-history-of-wealthy-sports-owners/
+
+Since the data was not given, the values were estimated by taking a screenshot from the article and then using WebPlotDigitizer (https://automeris.io/).
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(grid)
+# Example data preparation (replace with your actual data loading)
+sports_owners_data <- read.csv("political_donations_by_sport.csv", header = TRUE)
+sports_owners_data = pivot_longer(sports_owners_data, 
+                 cols = starts_with("TO"),
+                 names_to = "Owner",
+                 values_to = "Total_Donation")
+sports_owners_data$Owner = substring(sports_owners_data$Owner, first = 4)
+
+# Plotting using ggplot2
+ggplot(sports_owners_data, aes(x = YEAR, y = Total_Donation, fill = Owner)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("blue", "red")) +  # Example color scale, replace as needed
+  labs(
+    title = "Across leagues, majority of donations go to Republicans",
+    subtitle = "Share of donations from team owners in six leagues, per year, league and party",
+    x="",
+    y="",
+    fill = "DONATIONS TO",
+    caption = "Donations may not sum to 100 percent due to bipartisan donations."
+  ) +
+  facet_wrap(~LEAGUE)+
+  theme_minimal()+
+  theme(legend.position = "top", 
+        strip.text = element_text(face="bold"),
+        plot.title = element_text(size = 16, face = "bold"),     # Title text size and bold
+        plot.subtitle = element_text(size = 13), # Subtitle text size 
+        legend.text = element_text(size = 10),                    # Legend text size
+        legend.title = element_text(size = 10, face = "bold"),
+        plot.caption = element_text(hjust=0, color = "darkgray"),
+        plot.background = element_rect(fill="lightgray"))+
+  scale_x_continuous(breaks = c(2016, 2018, 2020)) 
+
+  
+
+```
+
+Below is a table of the actual dollar amounts contributed to each party broken up by league.
+
+```{r}
+#installed.packages("gt")
+library(knitr)
+library(gt)
+data = data.frame(
+  LEAGUE = c("MLB", "NBA", "NHL", "NFL", "WNBA", "NASCAR"),
+  TO_REPUBLICANS = c(15181761, 8372300, 7087116, 5032470, 1338459, 576110),
+  TO_DEMOCRATS = c(5184604, 2641487, 1726733, 873500, 1634153, 93983)
+)
+data$TOTAL = data$TO_REPUBLICANS + data$TO_DEMOCRATS
+
+# Create a styled table using gt
+styled_table <- data %>%
+  gt() %>%
+  tab_header(
+    title = md("MLB owners have donated the most"),
+    subtitle = md("Specifically partisan contributions from owners and commissioners in the NFL, NBA, WNBA, NHL, MLB, and NASCAR, by party, 2016-2020")
+  ) %>%
+  tab_options(
+    heading.align = "left"
+  ) %>% 
+  fmt_currency(
+    columns = c(TO_REPUBLICANS, TO_DEMOCRATS, TOTAL),
+    currency = "USD",
+    decimals = 0
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(align = "right")
+    ),
+    locations = cells_body(col=2:4)
+  ) %>%
+  tab_options(
+    table.width = "80%"
+    #column_labels.background.color = "#0073e6",
+    #row_labels.width.px = 100,
+    #row_labels.border.right = TRUE,
+    #table.border.top.width.px = 2,
+    #table.border.bottom.width.px = 2
+  ) %>% 
+  tab_footnote(
+    footnote =  "SOURCE: FEDERAL ELECTION COMMISSION, OPENSECRETS"
+  )
+
+# Print the styled table
+styled_table
+
+
+```
