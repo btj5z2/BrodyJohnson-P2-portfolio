@@ -2,4 +2,317 @@
 title: "Tidy Tuesday Exercise"
 ---
 
-Placeholder file for the future Tidy Tuesday exercise.
+The data used in this exercise is collected on seasons 1-18 of American Idol. Some of the variables consist of the songs sang by contestants, audition locations and times, personal information about the contestants, and episode ratings. The data and data dictionaries can be found in the following Github repository.
+
+https://github.com/kkakey/American_Idol/tree/main
+
+```{r, echo=FALSE}
+# Read in data set directly from GitHub
+
+auditions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-07-23/auditions.csv')
+eliminations <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-07-23/eliminations.csv')
+finalists <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-07-23/finalists.csv')
+ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-07-23/ratings.csv')
+seasons <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-07-23/seasons.csv')
+songs <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-07-23/songs.csv')
+
+```
+
+# Data Cleaning
+First, we will take a glimpse at each data set to see what needs to be cleaned. 
+
+## Auditions Data set
+
+```{r}
+library(dplyr)
+dplyr::glimpse(auditions) #Need to convert episodes to numeric with NAs 
+#Also need to convert air date to date instead of character 
+#May not be needed because of missing values however. 
+```
+```{r}
+colSums(is.na(auditions)) #Episodes, air_date, callback_venue, and gust_judge have significant number of missing values
+
+```
+## Eliminations Data set
+
+```{r}
+dplyr::glimpse(eliminations)  
+```
+
+```{r}
+colSums(is.na(eliminations)) #Lot of missing values especially within the "top_" variables 
+
+```
+
+## Finalists Data set
+
+```{r}
+dplyr::glimpse(finalists) #COnvert birthdate to date?
+```
+
+```{r}
+colSums(is.na(finalists)) #Missing ~1/2 observations for hometown
+
+```
+
+## Ratings Data set
+
+```{r}
+dplyr::glimpse(ratings) 
+ratings$airdate = as.numeric(as.Date(ratings$airdate, format = "%B %d, %Y"))#Convert airdate to date to numeric
+ratings$'18_49_rating_share' = as.numeric(ratings$'18_49_rating_share') #Convert rating_share to numeric and N/A values to NA
+ratings$weekrank = as.numeric(ratings$weekrank) #Convert week rank to numeric
+
+```
+
+```{r}
+colSums(is.na(ratings)) #Lot of missing values in columns "18_49_rating_share" through "rating_share" except viewers_in_millions
+
+```
+
+## Seasons Data set
+
+```{r}
+dplyr::glimpse(seasons) 
+seasons$original_network = as.factor(seasons$original_network) #Convert network to factor
+seasons$hosted_by = as.factor(seasons$hosted_by) #Convert network to factor
+seasons$judges = as.factor(seasons$judges) #Convert network to factor
+
+```
+
+```{r}
+colSums(is.na(seasons)) #Sig. NAs in # of episodes and mentor
+
+```
+
+## Songs Data set
+
+```{r}
+dplyr::glimpse(songs) 
+```
+
+```{r}
+colSums(is.na(songs)) #Lot of missing values in song_theme
+
+```
+
+
+# Data Wrangling 
+For the purpose of this exercise, I am going to be interested in figuring out the variables that contribute to higher number of viewers (specifically, the `viewers_in_millions` from the ratings data set). To do this, I will begin assembling the variables from each data set that I am interested in seeing the effect on the rating.  
+
+```{r}
+glimpse(songs)
+```
+
+Below is the vector of ratings for each show of each season. 
+
+```{r}
+ratings_y = ratings$viewers_in_millions
+sum(is.na(ratings_y)) #3 NA values 
+
+
+```
+
+```{r}
+#auditions = select(auditions$season, auditions$) #Not needed
+#eliminations = #Not needed
+#finalists = #Not needed
+ratings = select(ratings, season, show_number, airdate, weekrank)
+seasons = select(seasons, season, original_network, hosted_by, judges)
+#songs = #Not needed
+
+ratings_X = left_join(ratings, seasons, by = "season")
+
+```
+
+Remove NA values in responses variable and then the same observations in the descriptor variables data set. 
+
+```{r}
+# Identify rows with no NA values in data
+rows_to_keep <- which(!is.na(ratings_y))
+# Subset data sets based on rows_to_keep
+ratings_X <- ratings_X[rows_to_keep, ]
+ratings_y <- ratings_y[rows_to_keep]
+
+
+anyNA(ratings_X)
+colSums(is.na(ratings_X)) #Get rid of NAs in airdate and impute weekrank averages 
+
+# Getting rid of missing values in airdate
+rows_to_keep <- which(!is.na(ratings_X$airdate))
+# Subset data sets based on rows_to_keep
+ratings_X <- ratings_X[rows_to_keep, ]
+ratings_y <- ratings_y[rows_to_keep]
+
+#Impute averages into weekrank missing values
+#https://www.r-bloggers.com/2015/10/imputing-missing-data-with-r-mice-package/#google_vignette
+library(mice)
+md.pattern(ratings_X) #450 samples are complete, 98 miss only weekrank, etc
+
+tempData <- mice(ratings_X,m=5,maxit=50,meth='pmm',seed=500)
+summary(tempData)
+completedData = complete(tempData,1) #Cleaned data containing X variables
+summary(completedData)
+
+```
+
+
+# Exploratory Data Analysis
+
+Now we will take a closer look at the variables. First, we will start with the response variable, number of viewers in the millions, and then look at the descriptor variables. 
+
+```{r}
+library(ggplot2)
+
+net_freq = ratings_X %>% group_by(original_network) %>% summarize(count=n())
+host_freq = ratings_X %>% group_by(hosted_by) %>% summarize(count=n())
+judge_freq = ratings_X %>% group_by(judges) %>% summarize(count=n())
+
+
+par(mfrow = c(2,3))
+hist(ratings_y, breaks = 14) #Pretty bimodal 
+hist(ratings_X$season, breaks=18) #Fewer episodes done in later seasons 
+
+ggplot(data = net_freq, aes(x=original_network, y=count))+
+  geom_col() #A lot more episodes done by Fox
+ggplot(data = host_freq, aes(x=hosted_by, y=count))+
+  geom_col()+
+  geom_text(aes(label=count), vjust=-0.5)#Vast majority was hosted by only Ryan Seacrest
+ggplot(data = judge_freq, aes(x=judges, y=count))+
+  geom_col()+ 
+  theme(axis.text.x = element_text(angle=45, hjust = 1)) #Most episodes judged by Paula, Simon, & Randy
+
+
+```
+
+Next, I want to look at any correlations between the descriptor variables and response variable. The strongest correlation is between the response variable (# of viewers in millions) and the weekly ranking which makes sense as viewership goes up, ranking should also go up. 
+
+```{r}
+library(corrplot)
+a = cbind(completedData[,c("season","show_number", "airdate","weekrank")], ratings_y)
+corrplot::corrplot(cor(a[complete.cases(a),]), order="hclust")
+glimpse(completedData)
+```
+
+# Split data into train/test 
+
+
+```{r}
+library(caret)
+partition = createDataPartition(ratings_y, p=0.8)[[1]]
+data_train_X = completedData[partition,] 
+data_test_X = completedData[-partition,]
+data_train_Y = ratings_y[partition] 
+data_test_Y = ratings_y[-partition]
+
+
+```
+
+# Models
+
+As for the models, I decided to test out various tree-based models. 
+
+## Basic Regression Trees
+
+```{r}
+### Basic Regression Trees
+
+library(rpart)
+library(caret)
+
+cartTune <- train(x = data_train_X, y = data_train_Y,
+                  method = "rpart",
+                  tuneLength = 25,
+                  trControl = trainControl())
+cartTune
+cartTune$finalModel
+
+### Plot the tuning results
+### Cross-validated RMSE profile for the regression tree
+plot(cartTune, scales = list(x = list(log = 10)))
+
+### Use the partykit package to make some nice plots. First, convert
+### the rpart objects to party objects.
+# install.packages('partykit')
+library(partykit)
+ 
+cartTree <- as.party(cartTune$finalModel)
+plot(cartTree)
+
+### Get the variable importance. 'competes' is an argument that
+### controls whether splits not used in the tree should be included
+### in the importance calculations.
+
+cartImp <- varImp(cartTune, scale = FALSE, competes = FALSE)
+cartImp
+plot(cartImp,20)
+
+### Save the test set results in a data frame                 
+testResults <- data.frame(obs = data_test_Y,
+                          CART = predict(cartTune, data_test_X))
+
+```
+
+
+## Random Forest
+
+```{r}
+
+mtryGrid <- data.frame(mtry = floor(seq(10, ncol(data_train_X), length = 10)))
+
+set.seed(100)
+rfTune <- train(x = data_train_X, y = data_train_Y,
+                method = "rf",
+                tuneGrid = mtryGrid,
+                ntree = 200,
+                importance = TRUE,
+                trControl = trainControl())
+rfTune
+plot(rfTune)
+
+rfImp <- varImp(rfTune, scale = FALSE) #variable importance 
+rfImp
+
+### Save the test set results in a data frame  
+testResults$RF <- predict(rfTune, data_test_X)
+
+```
+
+## Boosting   
+
+```{r}
+### Boosting
+
+gbmGrid = expand.grid( interaction.depth = seq( 1, 7, by=2 ), #d value
+                       n.trees = seq( 100, 1000, by=100 ), #k value or number of trees
+                       shrinkage = c(0.01, 0.1), #lambda
+                       n.minobsinnode = 10 )
+
+gbmTune <- train(x = data_train_X, y = data_train_Y,
+                 method = "gbm",
+                 tuneGrid = gbmGrid,
+                 trControl = trainControl(),
+                 verbose = FALSE)
+gbmTune
+plot(gbmTune, auto.key = list(columns = 4, lines = TRUE))
+
+### Save the test set results in a data frame  
+testResults$Boosting <- predict(gbmTune, data_test_X)
+
+```
+
+
+# Results
+
+The results shown in the table below indicate the boosted model performs the best with the random forest model not far from it.  
+
+```{r}
+
+
+data.frame(rbind(CART=postResample(pred=testResults$CART,obs = data_test_Y),
+                                RF=postResample(pred=testResults$RF,obs = data_test_Y), 
+                                Boosting=postResample(pred=testResults$Boosting,obs = data_test_Y) ))
+
+```
+
+
